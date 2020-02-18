@@ -3,103 +3,101 @@ import "app/App.css"
 import "./styles.css"
 import React from "react"
 import ReactDOM from "react-dom"
-import { FaMinus, FaPlus } from "react-icons/fa"
+// import { FaMinus, FaPlus } from "react-icons/fa"
 import App from "app/App"
 
-function Minutes() {
-  const [minutes, setMinutes] = useState(5)
-  const [error, setError] = useState(null)
+ReactDOM.render(<App />, document.getElementById("root"))
 
-  const handleAdd = () => {
-    if (minutes < 9) {
-      setMinutes(minutes + 1)
-      setError(null)
-    } else {
-      setError("Less than 10 please.")
-    }
-  }
+/******************************************************************************/
+// Let's make our own hooks :O
 
-  const handleSubtract = () => {
-    if (minutes > 1) {
-      setMinutes(minutes - 1)
-      setError(null)
-    } else {
-      setError("Greater than 0 please")
-    }
-  }
+// function Minutes() {
+//   const [minutes, setMinutes] = useState(5)
+//   const [error, setError] = useState(null)
 
-  console.log(states)
+//   const handleAdd = () => {
+//     if (minutes < 9) {
+//       setMinutes(minutes + 1)
+//       setError(null)
+//     } else {
+//       setError("Less than 10 please.")
+//     }
+//   }
 
-  const el = (
-    <div>
-      <div className="Minutes">
-        <div>
-          <button
-            onClick={handleSubtract}
-            type="button"
-            className="icon_button Minutes_button"
-          >
-            <FaMinus />
-          </button>
-        </div>
-        <div className="Minutes_label" htmlFor="minutes">
-          {minutes} Minutes
-        </div>
-        <div>
-          <button
-            onClick={handleAdd}
-            type="button"
-            className="icon_button Minutes_button"
-          >
-            <FaPlus />
-          </button>
-        </div>
-      </div>
-      <div style={{ textAlign: "center" }}>
-        {error && (
-          <p>
-            {error}{" "}
-            <span role="img" aria-label="eep!">
-              😬
-            </span>
-            <br />
-            <button onClick={() => setError(null)}>
-              dismiss
-            </button>
-          </p>
-        )}
-      </div>
-    </div>
-  )
+//   const handleSubtract = () => {
+//     if (minutes > 1) {
+//       setMinutes(minutes - 1)
+//       setError(null)
+//     } else {
+//       setError("Greater than 0 please")
+//     }
+//   }
 
-  return el
-}
+//   return (
+//     <div>
+//       <div className="Minutes">
+//         <div>
+//           <button
+//             onClick={handleSubtract}
+//             type="button"
+//             className="icon_button Minutes_button"
+//           >
+//             <FaMinus />
+//           </button>
+//         </div>
+//         <div className="Minutes_label" htmlFor="minutes">
+//           {minutes} Minutes
+//         </div>
+//         <div>
+//           <button
+//             onClick={handleAdd}
+//             type="button"
+//             className="icon_button Minutes_button"
+//           >
+//             <FaPlus />
+//           </button>
+//         </div>
+//       </div>
+//       <div style={{ textAlign: "center" }}>
+//         {error && (
+//           <p>
+//             {error}{" "}
+//             <span role="img" aria-label="eep!">
+//               😬
+//             </span>
+//             <br />
+//             <button onClick={() => setError(null)}>dismiss</button>
+//           </p>
+//         )}
+//       </div>
+//     </div>
+//   )
+// }
 
-const states = []
-let callCount = -1
+// const states = []
+// let calls = -1
 
-function useState(initialValue) {
-  const id = ++callCount
+// function useState(defaultValue) {
+//   const callId = ++calls
+//   const existing = states[callId]
 
-  if (states[id]) {
-    return states[id]
-  }
+//   if (existing) {
+//     return existing
+//   }
 
-  const setValue = newValue => {
-    states[id][0] = newValue
-    renderPhonyHooks()
-  }
+//   function setValue(newValue) {
+//     states[callId][0] = newValue
+//     render()
+//   }
 
-  const tuplé = [initialValue, setValue]
-  states.push(tuplé)
-  return tuplé
-}
+//   const state = [defaultValue, setValue]
+//   states[callId] = state
+//   return state
+// }
 
-function renderPhonyHooks() {
-  callCount = -1
-  ReactDOM.render(
-    <Minutes />,
-    document.getElementById("root")
-  )
-}
-renderPhonyHooks()
+// function render() {
+//   calls = -1
+//   ReactDOM.render(<Minutes />, document.getElementById("root"))
+// }
+
+// render()

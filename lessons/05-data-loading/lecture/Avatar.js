@@ -8,36 +8,20 @@ import {
 } from "app/utils"
 import ProgressCircle from "app/ProgressCircle"
 
-export default function Avatar({
-  uid,
-  size = 50,
-  bg,
-  className,
-  ...rest
-}) {
-  const [user, setUser] = useState(null)
-  const [posts, setPosts] = useState(null)
+/******************************************************************************/
+// Alright, we know everything we need to know about React to start building
+// out an entire application. We know how to render, how to change state and
+// update the page, and how to perform effects.
+//
+// The most common effect is probably loading and subscribing to data. Let's
+// take a look.
+//
+// For this Avatar to work, we need to load the user and all of their posts
+// so we can calculate the rings on their avatar. Right now, it's just empty.
 
-  useEffect(() => {
-    const unsubscribe = subscribeToPosts(uid, posts => {
-      setPosts(posts)
-    })
-    return () => {
-      unsubscribe()
-    }
-  }, [uid])
-
-  useEffect(() => {
-    let isCurrent = true
-    fetchUser(uid).then(user => {
-      if (isCurrent) {
-        setUser(user)
-      }
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [uid])
+export default function Avatar({ uid, size = 50, bg, className, ...rest }) {
+  const user = null
+  const posts = null
 
   if (!user) {
     return (
@@ -55,8 +39,7 @@ export default function Avatar({
   const circles = (() => {
     if (!posts) return null
     const minutes = posts && calculateTotalMinutes(posts)
-    const expectedMinutes =
-      posts && calculateExpectedMinutes(user)
+    const expectedMinutes = posts && calculateExpectedMinutes(user)
     const progress = (minutes / goal) * 100
     const expectedProgress = (expectedMinutes / goal) * 100
 
